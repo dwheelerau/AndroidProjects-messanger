@@ -8,6 +8,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.app.Activity;
+import android.content.Intent;
+import android.widget.EditText;
 
 public class CreateMessageActivity extends AppCompatActivity {
 
@@ -26,6 +29,16 @@ public class CreateMessageActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    //call onSendMessage() when the button is clicked
+    public void onSendMessage(View view){
+        EditText messageView = (EditText) findViewById(R.id.message);
+        String messageText = messageView.getText().toString();
+        Intent intent = new Intent(this, ReceiveMessageActivity.class);
+        intent.putExtra(ReceiveMessageActivity.EXTRA_MESSAGE, messageText);
+        startActivity(intent);
+
     }
 
     @Override
